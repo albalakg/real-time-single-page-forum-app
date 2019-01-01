@@ -33,9 +33,10 @@ export default {
     cancel() {
       EventBus.$emit("cancelEditing");
     },
-    update(){
-      axios.patch(`/api/question/${this.form.slug}`, this.form)
-           .then(res => this.cancel())     
+    update() {
+      axios
+        .patch(`/api/question/${this.form.slug}`, this.form)
+        .then(res => this.cancel());
     }
   }
 };

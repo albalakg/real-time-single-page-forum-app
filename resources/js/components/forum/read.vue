@@ -2,14 +2,20 @@
   <div v-if="question">
     <edit-question v-if="editing" :data="question"></edit-question>
     <show-question v-else :data="question"/>
+    <v-container>
+      <new-reply :questionSlug="question.slug"></new-reply>
+      <replies :question="question"></replies>
+    </v-container>
   </div>
 </template>
 
 <script>
 import ShowQuestion from "./ShowQuestion";
 import EditQuestion from "./editQuestion";
+import Replies from "../reply/replies";
+import NewReply from "../reply/newReply";
 export default {
-  components: { ShowQuestion, EditQuestion },
+  components: { ShowQuestion, EditQuestion, Replies, NewReply },
   data() {
     return {
       question: null,

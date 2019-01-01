@@ -8,6 +8,7 @@ import Signup from '../components/login/signup'
 import Read from '../components/forum/read'
 import Create from '../components/forum/create'
 import Forum from '../components/forum/forum'
+import Category from '../components/category/createCategory'
 import Logout from '../components/login/logout'
 
 const routes = [{
@@ -35,6 +36,10 @@ const routes = [{
     {
         path: '/ask',
         component: Create
+    },
+    {
+        path: '/category',
+        component: Category
     },
 ]
 
