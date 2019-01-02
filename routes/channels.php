@@ -16,3 +16,7 @@ Broadcast::channel('replyChannel', function () {
 Broadcast::channel('deleteReplyChannel', function () {
     return true;
 });
+
+Broadcast::channel('newQuestionChannel', function () {
+    return true;
+});

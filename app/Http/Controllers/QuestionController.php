@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Model\Question;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
+use App\Events\newQuestionEvent;
 use App\Http\Resources\QuestionResource;
+use Illuminate\Support\Facades\Response;
 
 
 class QuestionController extends Controller
@@ -50,6 +51,7 @@ class QuestionController extends Controller
     {
         // $request['slug'] = str_slug($request->title); \\ used boot function instead in the Question Model
         $question = auth()->user()->question()->create($request->all());
+        broadcast(new newQuestionEvent( new QuestionResource($question)))->toOthers();
 
         return response(new QuestionResource($question), 201);
     }

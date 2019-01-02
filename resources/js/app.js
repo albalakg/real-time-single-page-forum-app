@@ -11,7 +11,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 
 Vue.use(Vuetify)
- 
+
 import VueSimplemde from 'vue-simplemde'
 Vue.use(VueSimplemde)
 
@@ -20,6 +20,9 @@ window.md = md
 
 import User from './Helpers/User'
 window.User = User
+
+import Exception from './Helpers/Exeptions'
+window.Exception = Exception
 
 window.EventBus = new Vue();
 
