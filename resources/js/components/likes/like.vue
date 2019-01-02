@@ -21,6 +21,13 @@ export default {
       return this.liked ? "red" : "red lighten-3";
     }
   },
+  created() {
+    Echo.channel("likeChannel").listen("LikeEvent", e => {
+      if (this.content.id == e.id) {
+        e.type == 1 ? this.count++ : this.count--;
+      }
+    });
+  },
   methods: {
     likeIt() {
       if (User.loggedIn()) {
@@ -28,12 +35,22 @@ export default {
         this.liked = !this.liked;
       }
     },
+    //***Faster***
     incr() {
-      axios.post(`/api/like/${this.content.id}`).then(res => this.count++);
+      this.count++;
+      axios.post(`/api/like/${this.content.id}`);
     },
     decr() {
-      axios.delete(`/api/like/${this.content.id}`).then(res => this.count--);
+      this.count--;
+      axios.delete(`/api/like/${this.content.id}`);
     }
+    //***Safer***
+    // incr() {
+    //   axios.post(`/api/like/${this.content.id}`).then(res => this.count++);
+    // },
+    // decr() {
+    //   axios.delete(`/api/like/${this.content.id}`).then(res => this.count--);
+    // }
   }
 };
 </script>
